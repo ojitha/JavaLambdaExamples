@@ -1,0 +1,43 @@
+apply plugin: 'java'
+apply plugin: 'idea'
+
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
+version = '1.0'
+
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'Java Lambda Examples',
+                   'Implementation-Version': version
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'commons-collections', name: 'commons-collections', version: '3.2.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.1.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.1.0'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+task sourceSetProperties << {
+    sourceSets {
+        main {
+            println "java.srcDirs = ${java.srcDirs}"
+            println "resources.srcDirs = ${resources.srcDirs}"
+            println "java.files = ${java.files.name}"
+            println "allJava.files = ${allJava.files.name}"
+            println "resources.files = ${resources.files.name}"
+            println "allSource.files = ${allSource.files.name}"
+            println "output.classesDir = ${output.classesDir}"
+            println "output.resourcesDir = ${output.resourcesDir}"
+            println "output.files = ${output.files}"
+        }
+    }
+}
